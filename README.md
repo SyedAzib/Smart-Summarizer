@@ -4,6 +4,10 @@ A Streamlit-based NLP application that helps students, readers, and professional
 
 ---
 
+## 🌐 Live Demo
+👉 https://smart-summarizer-evgfpwbxy2xggd7yzjaas8.streamlit.app/
+ ---
+
 ## 🎯 Problem Statement
 
 Students and professionals face an **information overload** problem:
