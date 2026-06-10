@@ -31,10 +31,16 @@ st.set_page_config(
 # ──────────────────────────────────────────────
 st.markdown("""
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
     /* ── Global ── */
+    html, body, [class*="css"] {
+        font-family: 'Inter', sans-serif;
+    }
     .main .block-container {
         padding-top: 2rem;
         padding-bottom: 2rem;
+        background-color: #0a0f1e;
     }
 
     /* ── Hide Deploy button & hamburger menu ── */
@@ -46,66 +52,74 @@ st.markdown("""
     /* ── Header ── */
     .app-header {
         text-align: center;
-        padding: 1.5rem 0 1rem;
+        padding: 2rem 0 1.5rem;
     }
     .app-header h1 {
-        font-size: 2.4rem;
+        font-size: 2.6rem;
         font-weight: 800;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(90deg, #00d2ff 0%, #0072ff 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.4rem;
+        letter-spacing: -0.5px;
     }
     .app-header p {
-        color: #888;
+        color: #7a8baa;
         font-size: 1.05rem;
         margin-top: 0;
+        font-weight: 400;
     }
 
     /* ── Metric Cards ── */
     .metric-card {
-        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-        border: 1px solid #2a2a4a;
-        border-radius: 12px;
-        padding: 1.2rem;
+        background: linear-gradient(145deg, #0f1729 0%, #111d35 100%);
+        border: 1px solid #1e2d4a;
+        border-radius: 14px;
+        padding: 1.3rem;
         text-align: center;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .metric-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 114, 255, 0.15);
+        border-color: #0072ff44;
     }
     .metric-value {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
         font-weight: 700;
-        color: #667eea;
+        background: linear-gradient(90deg, #00d2ff, #0072ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
     .metric-label {
-        font-size: 0.85rem;
-        color: #999;
-        margin-top: 0.25rem;
+        font-size: 0.82rem;
+        color: #5a6a88;
+        margin-top: 0.3rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 
     /* ── Section Headers ── */
     .section-header {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         font-weight: 700;
-        color: #000000;
+        color: #e0eaff;
         margin: 1.5rem 0 0.75rem;
         padding-bottom: 0.5rem;
-        border-bottom: 2px solid #667eea;
+        border-bottom: 2px solid #0072ff55;
         display: inline-block;
     }
 
     /* ── Summary Box ── */
     .summary-box {
-        background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
-        border-left: 4px solid #667eea;
-        border-radius: 0 12px 12px 0;
-        padding: 1.25rem 1.5rem;
+        background: linear-gradient(145deg, #0f1729 0%, #0a1628 100%);
+        border-left: 4px solid #00d2ff;
+        border-radius: 0 14px 14px 0;
+        padding: 1.4rem 1.6rem;
         font-size: 1.05rem;
-        line-height: 1.7;
-        color: #e0e0e0;
+        line-height: 1.8;
+        color: #c8d8f0;
     }
 
     /* ── Keyword Tags ── */
@@ -116,56 +130,65 @@ st.markdown("""
         margin-top: 0.5rem;
     }
     .keyword-tag {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #0072ff 0%, #00d2ff 100%);
         color: white;
-        padding: 0.4rem 0.9rem;
+        padding: 0.4rem 1rem;
         border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 500;
+        font-size: 0.84rem;
+        font-weight: 600;
         display: inline-flex;
         align-items: center;
         gap: 0.35rem;
-        transition: transform 0.15s ease;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        box-shadow: 0 2px 8px rgba(0,114,255,0.3);
     }
     .keyword-tag:hover {
-        transform: scale(1.05);
+        transform: scale(1.06);
+        box-shadow: 0 4px 14px rgba(0,210,255,0.4);
     }
     .keyword-score {
         background: rgba(255,255,255,0.2);
-        padding: 0.15rem 0.4rem;
+        padding: 0.15rem 0.45rem;
         border-radius: 10px;
         font-size: 0.75rem;
     }
 
     /* ── Compression Badge ── */
     .compression-badge {
-        background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+        background: linear-gradient(135deg, #00c6a7 0%, #0072ff 100%);
         color: white;
-        padding: 0.6rem 1.2rem;
+        padding: 0.6rem 1.3rem;
         border-radius: 25px;
         font-size: 1rem;
         font-weight: 600;
         display: inline-block;
         margin-top: 0.5rem;
+        box-shadow: 0 3px 12px rgba(0,198,167,0.3);
     }
 
     /* ── Info Box ── */
     .info-box {
-        background: #1a1a2e;
-        border: 1px solid #2a2a4a;
-        border-radius: 10px;
+        background: #0f1729;
+        border: 1px solid #1e2d4a;
+        border-radius: 12px;
         padding: 1rem 1.25rem;
         font-size: 0.9rem;
-        color: #aaa;
+        color: #7a8baa;
         line-height: 1.6;
     }
 
     /* ── Sidebar Styling ── */
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #d0e8f7 0%, #b3d4f0 100%);
+        background: linear-gradient(180deg, #0a0f1e 0%, #0d1530 100%);
+        border-right: 1px solid #1e2d4a;
     }
     [data-testid="stSidebar"] .block-container {
         padding-top: 2rem;
+    }
+    [data-testid="stSidebar"] label,
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] span {
+        color: #a0b4d0 !important;
     }
 
     /* ── Sentence Score Table ── */
@@ -173,22 +196,22 @@ st.markdown("""
         display: flex;
         align-items: flex-start;
         gap: 0.75rem;
-        padding: 0.6rem 0;
-        border-bottom: 1px solid #1a1a2e;
+        padding: 0.65rem 0;
+        border-bottom: 1px solid #1e2d4a;
     }
     .score-badge {
-        min-width: 50px;
-        background: #667eea;
+        min-width: 52px;
+        background: linear-gradient(135deg, #0072ff, #00d2ff);
         color: white;
         text-align: center;
-        padding: 0.2rem 0.5rem;
-        border-radius: 6px;
+        padding: 0.25rem 0.5rem;
+        border-radius: 7px;
         font-size: 0.8rem;
-        font-weight: 600;
+        font-weight: 700;
     }
     .score-text {
         font-size: 0.9rem;
-        color: #ccc;
+        color: #8a9bbf;
         line-height: 1.5;
     }
 </style>
